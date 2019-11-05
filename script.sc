@@ -4,6 +4,7 @@ import scala.io.Source
 
 val myLines: Vector[String] = loadFile("text/pg23.txt")
 val v: Vector[String] = Vector(
-  "dogs"
-  "cats"
+  "dogs",
+  "cats",
   "fish"
+)
