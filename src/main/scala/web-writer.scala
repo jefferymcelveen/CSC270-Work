@@ -60,9 +60,18 @@ object webWriter {
 				/* -------------------------------------- */
 				// 2. Split it into manageable chunks. THERE ARE SEVERAL WAYS TO DO THIS!
 
-				//val corpVec: Vector[Corpus] = hocuspocus.corpusToChapters( corp, drop = 1 )
+				val corpVecChapters: Vector[Corpus] = hocuspocus.corpusToChapters( corp, drop = 1 )
+				val corpVec: Vector[Corpus] = {
+						corpVecChapters.map( c => {
+							hocuspocus.equalSize( c, target = 6000 )
+						}).flatten
+				}
+
+				/*
+				val corpVec: Vector[Corpus] = hocuspocus.corpusToChapters( corp, drop = 1 )
 				val corpVec: Vector[Corpus] = hocuspocus.equalDivs( corp, n = 10 )
-				//val corpVec: Vector[Corpus] = hocuspocus.equalSize( corp, target = 5000 )
+				val corpVec: Vector[Corpus] = hocuspocus.equalSize( corp, target = 5000 )
+				*/
 				/* -------------------------------------- */
 
 				// A little reporting… 	
@@ -196,7 +205,7 @@ object webWriter {
 			<link href="https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,500,500i,600,600i,700,700i,800,800i&amp;subset=cyrillic-ext,greek,greek-ext,latin-ext" rel="stylesheet">
 			</head>
 			<body>
-			<header>Your header</header>
+			
 			<article>
 			${sequenceString}
 			${catString}
